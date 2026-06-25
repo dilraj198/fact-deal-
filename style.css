@@ -1,0 +1,152 @@
+/* ===== GLOBAL ===== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+body{
+    font-family:'Segoe UI',sans-serif;
+    background:linear-gradient(135deg,#0f172a,#1e3a8a);
+    min-height:100vh;
+    padding:30px;
+}
+
+/* ===== TITLE ===== */
+
+h2{
+    text-align:center;
+    color:black;
+    margin-bottom:25px;
+    font-size:32px;
+    font-weight:700;
+    letter-spacing:1px;
+    border: solid;
+}
+
+/* ===== CONTAINER ===== */
+
+.container{
+    display:flex;
+    justify-content:center;
+    align-items:flex-start;
+    gap:30px;
+    flex-wrap:wrap;
+}
+
+/* ===== FORM ===== */
+
+.form{
+    width:340px;
+    background:white;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.15),
+    0 20px 40px rgba(0,0,0,.15);
+}
+
+.form input{
+    width:100%;
+    padding:12px 15px;
+    margin-bottom:12px;
+    border:2px solid #e5e7eb;
+    border-radius:12px;
+    font-size:15px;
+    transition:.3s;
+}
+
+.form input:focus{
+    outline:none;
+    border-color:#2563eb;
+    box-shadow:0 0 12px rgba(37,99,235,.2);
+}
+
+/* ===== BUTTON ===== */
+
+button{
+    width:100%;
+    padding:14px;
+    border:none;
+    border-radius:12px;
+    background:linear-gradient(
+        135deg,
+        #2563eb,
+        #1d4ed8
+    );
+    color:white;
+    font-size:16px;
+    font-weight:600;
+    cursor:pointer;
+    transition:.3s;
+}
+
+button:hover{
+    transform:translateY(-3px);
+    box-shadow:0 12px 25px rgba(37,99,235,.35);
+}
+
+/* ===== PREVIEW ===== */
+
+.preview-box{
+    background:white;
+    padding:20px;
+    border-radius:20px;
+    box-shadow:
+    0 10px 20px rgba(0,0,0,.15),
+    0 20px 40px rgba(0,0,0,.15);
+}
+
+/* ===== CARD SCROLL ===== */
+
+.card-wrapper{
+    max-width:520px;
+    max-height:750px;
+    overflow:auto;
+}
+
+/* ===== SCROLLBAR ===== */
+
+::-webkit-scrollbar{
+    width:10px;
+}
+
+::-webkit-scrollbar-thumb{
+    background:#2563eb;
+    border-radius:20px;
+}
+
+::-webkit-scrollbar-track{
+    background:#e5e7eb;
+}
+
+/* ===== FOOTER ===== */
+
+.footer{
+    margin-top:20px;
+    text-align:center;
+    color:white;
+    font-size:14px;
+}
+
+/* ===== ANIMATION ===== */
+
+.form,
+.preview-box{
+    animation:fadeIn .5s ease;
+}
+
+@keyframes fadeIn{
+
+    from{
+        opacity:0;
+        transform:translateY(20px);
+    }
+
+    to{
+        opacity:1;
+        transform:translateY(0);
+    }
+
+}

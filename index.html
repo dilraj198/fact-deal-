@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>Facts Deal</title>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<link rel="stylesheet" href="style.css">
+
+<style>
+
+body{
+    font-family:Arial;
+    background:#89c3ea;
+    padding:20px;
+    border: solid black;
+  border-radius: 30px;  
+}
+
+.container{
+    display:flex;
+    gap:20px;
+    flex-wrap:wrap;
+}
+
+.form{
+    width:320px;
+    background:white;
+    padding:15px;
+    border-radius:10px;
+}
+
+input{
+    width:100%;
+    padding:10px;
+    margin:5px 0;
+    box-sizing:border-box;
+}
+
+button{
+    width:100%;
+    padding:12px;
+    background:#0066cc;
+    color:white;
+    border:none;
+    cursor:pointer;
+    margin-top:10px;
+}
+
+#card{
+    position:relative;
+    width:921px;
+    height:1536px;
+    background:url('template.jpg');
+    background-size:100% 100%;
+    background-repeat:no-repeat;
+
+    transform:scale(.45);
+    transform-origin:top left;
+}
+
+/* PHOTO */
+
+/* PHOTO FRAME */
+
+#photo{
+    position:absolute;
+    left:228px;
+    top:292px;
+    width:474px;
+    height:574px;
+    object-fit:cover;
+    border-radius:49px;
+}
+
+/* NAME */
+
+#nameText{
+    position:absolute;
+    top:870px;
+    width:100%;
+    text-align:center;
+    font-family:"Times New Roman";
+    font-size:91px;
+    font-weight:bold;
+    white-space:nowrap;
+    overflow:hidden;
+}
+
+/* DESIGNATION */
+
+#designationText{
+    position:absolute;
+    top:953px;
+    width:100%;
+    text-align:center;
+    font-family:"Times New Roman";
+    font-size:84px;
+    font-weight:bold;
+}
+
+/* VALUES */
+
+.value{
+    position:absolute;
+    left: 483px;
+    font-family:"Times New Roman";
+    font-size:50px;
+    font-weight:bold;
+    width:353px;
+     top: 1277px;
+  
+}
+/* VALUE POSITIONS */
+
+#blood{
+    top: 1050px;
+    left:550px;
+}
+
+#contact{
+    top:1124px;
+    left:485px;
+}
+
+#address{
+    top:1190px;
+    left:485px;
+    width:380px;
+    height:80px;
+    font-size:41px;
+    line-height:45px;
+    word-wrap:break-word;
+    overflow:hidden;
+}
+
+
+#empid{
+    top: 1277px;
+    left:485px;
+}
+
+#project{
+    top:1345px;
+    left:485px;
+}
+.pdf-btn{
+    background:#3226dc;
+    margin-bottom:10px;
+}
+
+.png-btn{
+    background:#298cd2;
+}
+
+.pdf-btn:hover{
+    background:#57c7d6;
+}
+
+.png-btn:hover{
+    background:#15803d;
+}
+
+</style>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+
+<h2>Facts Deal Employee ID Generator</h2>
+
+<div class="container">
+
+<div class="form">
+
+<input id="nameInput" placeholder="Employee Name">
+
+<input id="designationInput" placeholder="Designation" value="Interviewer">
+
+<input id="bloodInput" placeholder="Blood Group">
+
+<input id="contactInput" placeholder="Contact Number">
+
+<input id="addressInput" placeholder="Address">
+
+<input id="idInput" placeholder="Employee ID" value="FACTDEAL">
+
+<input id="projectInput" placeholder="Project" value="General Survey">
+
+<input type="file" id="photoInput" accept="image/*">
+
+<button onclick="downloadPDF()">Download PDF</button>
+<button onclick="downloadPNG()">Download PNG</button>
+
+</div>
+
+<div style="max-width:425px;max-height:705px;">
+
+<div id="card">
+<img id="photo" src="" alt="Employee Photo">
+
+<div id="nameText">Your Name</div>
+
+<div id="designationText">Interviewer</div>
+
+<div class="value" id="blood"></div>
+
+<div class="value" id="contact"></div>
+
+<div class="value" id="address"></div>
+
+<div class="value" id="empid">FACTDEAL</div>
+
+<div class="value" id="project">General Survey</div>
+
+</div>
+
+</div>
+
+</div>
+
+<script>
+    function fitName(){
+
+    const el = document.getElementById("nameText");
+
+    let size = 91;
+
+    el.style.fontSize = size + "px";
+
+    while(el.scrollWidth > el.offsetWidth && size > 40){
+
+        size--;
+
+        el.style.fontSize = size + "px";
+
+    }
+}
+function fitAddress(){
+
+    const el = document.getElementById("address");
+
+    let size = 41;
+
+    el.style.fontSize = size + "px";
+
+    while(
+        (el.scrollWidth > el.offsetWidth ||
+         el.scrollHeight > el.offsetHeight)
+        && size > 20
+    ){
+
+        size--;
+
+        el.style.fontSize = size + "px";
+    }
+}
+function updateCard(){
+   
+
+document.getElementById("nameText").innerText =
+document.getElementById("nameInput").value || "Your Name";
+ fitName();
+
+document.getElementById("designationText").innerText =
+document.getElementById("designationInput").value || "Interviewer";
+
+document.getElementById("blood").innerText =
+document.getElementById("bloodInput").value;
+
+document.getElementById("contact").innerText =
+document.getElementById("contactInput").value;
+
+document.getElementById("address").innerText =
+document.getElementById("addressInput").value;
+ fitAddress();
+
+document.getElementById("empid").innerText =
+document.getElementById("idInput").value.toUpperCase() ||"FACTDEAL";
+
+document.getElementById("project").innerText =
+document.getElementById("projectInput").value ||"General Survey";
+
+}
+
+document.querySelectorAll("input").forEach(el=>{
+el.addEventListener("input",updateCard);
+});
+
+document.getElementById("photoInput")
+.addEventListener("change",function(e){
+
+const file=e.target.files[0];
+
+if(!file) return;
+
+const reader=new FileReader();
+
+reader.onload=function(ev){
+
+document.getElementById("photo").src=
+ev.target.result;
+
+};
+
+reader.readAsDataURL(file);
+
+});
+
+async function downloadPDF(){
+
+    const card = document.getElementById("card");
+
+    const canvas = await html2canvas(card,{
+    scale:2,
+    useCORS:true
+});
+
+
+    const imgData = canvas.toDataURL("image/jpeg", 0.65);
+
+    const { jsPDF } = window.jspdf;
+
+    const pdf = new jsPDF({
+    orientation: "portrait",
+    unit: "mm",
+    format: [54, 86] // ID card size in mm
+});
+    
+
+   pdf.addImage(
+    imgData,
+    "JPEG",
+    0,
+    0,
+    54,
+    86
+);
+
+
+    const name =
+    document.getElementById("nameInput")
+    .value
+    .trim()
+    .replaceAll(" ","_")
+    || "Employee";
+
+    pdf.save(`${name}.pdf`);
+}
+async function downloadPNG(){
+
+    const card = document.getElementById("card");
+
+    const canvas = await html2canvas(card,{
+        scale:2,
+        useCORS:true
+    });
+
+    const name =
+    document.getElementById("nameInput")
+    .value
+    .trim()
+    .replaceAll(" ","_")
+    || "Employee";
+
+    const link = document.createElement("a");
+
+    link.download = `${name}.png`;
+
+    link.href = canvas.toDataURL("image/png");
+
+    link.click();
+}
+
+</script>
+
+</body>
+</html>
