@@ -145,7 +145,13 @@ button{
 #project{
     top:1345px;
     left:485px;
+    width:420px;
+    font-size:48px;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
 }
+    
 .pdf-btn{
     background:#3226dc;
     margin-bottom:10px;
@@ -255,6 +261,22 @@ function fitAddress(){
         size--;
 
         el.style.fontSize = size + "px";
+    }
+}
+function fitProject(){
+
+    const el = document.getElementById("project");
+
+    let size = 48;
+
+    el.style.fontSize = size + "px";
+
+    while(el.scrollWidth > el.offsetWidth && size > 25){
+
+        size--;
+
+        el.style.fontSize = size + "px";
+
     }
 }
 function updateCard(){
