@@ -238,3 +238,14 @@ button:hover{
     }
 
 }
+@media (max-width:768px){
+
+    .preview-card{
+        transform:scale(.28);
+        transform-origin:top left;
+    }
+
+    .form{
+        width:100%;
+    }
+}

@@ -56,7 +56,9 @@ button{
     background:url('template.jpg');
     background-size:100% 100%;
     background-repeat:no-repeat;
+}
 
+.preview-card{
     transform:scale(.45);
     transform-origin:top left;
 }
@@ -204,7 +206,7 @@ button{
 
 <div style="max-width:425px;max-height:705px;">
 
-<div id="card">
+<div id="card" class="preview-card">
 <img id="photo" src="" alt="Employee Photo">
 
 <div id="nameText">Your Name</div>
@@ -335,10 +337,17 @@ async function downloadPDF(){
 
     const card = document.getElementById("card");
 
-    const canvas = await html2canvas(card,{
-    scale:2,
+   const oldTransform = card.style.transform;
+
+card.style.transform = "scale(1)";
+
+const canvas = await html2canvas(card,{
+    scale:1,
     useCORS:true
 });
+
+card.style.transform = oldTransform;
+;
 
 
     const imgData = canvas.toDataURL("image/jpeg", 0.65);
